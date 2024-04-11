@@ -60,8 +60,9 @@
     <div class="container">
       <h1>URL Shortener</h1>
       <% if (locals.id) { %>
-          <p>URL Generated: http://localhost:8081/url/<%= id %></p>
+        <p>URL Generated: <a href="https://yashaar.onrender.com/url/<%= id %>">https://yashaar.onrender.com/url/<%= id %></a></p>
       <% } %>
+    
       <form method="POST" action="/url">
         <input type="text" name="url" placeholder="Enter Your Original URL" />
         <button type="submit">Generate</button>
