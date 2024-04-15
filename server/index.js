@@ -7,7 +7,7 @@ const {connectToMongoDB} = require('./connect')
 
 const URL = require('./models/url')
 
-const {restrictToLoggedinUserOnly, checkAuth} = require('./middleware/auth')
+const {RestrictLog, checingAuth} = require('./middleware/auth')
 const urlRoute = require('./routes/url')
 const staticRoute = require('./routes/staticRouter')
 const userRoute = require("./routes/user")
@@ -36,8 +36,8 @@ app.use(cookieParser())
 // })
 
 app.use("/user", userRoute) // ypu will have to be logged in for accessing anything in /url
-app.use("/url", restrictToLoggedinUserOnly, urlRoute) // Where ever there is url use urlRoute 
-app.use("/", checkAuth, staticRoute)
+app.use("/url", RestrictLog, urlRoute) // Where ever there is url use urlRoute 
+app.use("/", checingAuth, staticRoute)
 
 app.get("/url/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
